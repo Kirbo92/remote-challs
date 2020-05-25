@@ -12,19 +12,19 @@ char	*ft_swap(char *str, int it_left, int it_right)
 	length = it_right;
 	while (length > i)
 	{
-		if (str[i] == '(')
+		if (i[str] == '(')
 			tmp = ')';
-		else if (str[i] == ')')
+		else if (i[str] == ')')
 			tmp = '(';
 		else
-			tmp = str[i];
-		if (str[length] == '(')
-			str[i] = ')';
+			tmp = i[str];
+		if (length[str] == '(')
+			i[str] = ')';
 		else if (str[length] == ')')
-			str[i] = '(';
+			i[str] = '(';
 		else
-			str[i] = str[length];
-		str[length] = tmp;
+			i[str] = length[str];
+		length[str] = tmp;
 		length--;
 		i++;
 	}
@@ -39,26 +39,26 @@ char *ft_reverse_parenthesis(const char *str)
 	int it_left = 0;
 	int it_right = len - 1;
 	
-	while (reverse[it_left] && it_left != it_right)
+	while (it_left[reverse] && it_left != it_right)
 	{	
-		if (reverse[it_left] == '(')
+		if (it_left[reverse] == '(')
 		{
-			while (reverse[it_right] && it_right != it_left)
+			while (it_right[reverse] && it_right != it_left)
 			{
-				if (reverse[it_right] == ')'){
+				if (it_right[reverse] == ')'){
 					reverse = ft_swap(reverse, it_left, it_right--);
 					break ;
 				}
-				if (reverse[it_right] == '(')
-					return (NULL);
 				it_right--;
 			}
+			//if (it_right[reverse] == '(')
+			//	return (NULL);
 		}
 		it_left++;
 		//if (it_right < it_left)
 		//	break ;
 	}
-	if (reverse[it_left] == ')')
+	if (it_left[reverse] == ')')
 			return (NULL);
 	return (reverse);
 }
