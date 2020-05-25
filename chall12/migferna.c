@@ -6,15 +6,25 @@ char	*ft_swap(char *str, int it_left, int it_right)
 {
 	int		i;
 	int		length;
-	char	buff;
+	char	tmp;
 
-	i = it_left + 1;
+	i = it_left;
 	length = it_right;
-	while (length - 1 > i)
+	while (length > i)
 	{
-		buff = str[i];
-		str[i] = str[length - 1];
-		str[length - 1] = buff;
+		if (str[i] == '(')
+			tmp = ')';
+		else if (str[i] == ')')
+			tmp = '(';
+		else
+			tmp = str[i];
+		if (str[length] == '(')
+			str[i] = ')';
+		else if (str[length] == ')')
+			str[i] = '(';
+		else
+			str[i] = str[length];
+		str[length] = tmp;
 		length--;
 		i++;
 	}
@@ -37,7 +47,7 @@ char *ft_reverse_parenthesis(const char *str)
 			{
 				if (reverse[it_right] == ')')
 					
-					ft_swap(reverse, it_left, it_right);
+					reverse = ft_swap(reverse, it_left, it_right);
 				it_right--;
 			}
 		}
