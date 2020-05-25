@@ -46,7 +46,7 @@ char *ft_reverse_parenthesis(const char *str)
 			while (reverse[it_right] && it_right != it_left)
 			{
 				if (reverse[it_right] == ')'){
-					reverse = ft_swap(reverse, it_left++, it_right--);
+					reverse = ft_swap(reverse, it_left, it_right--);
 					break ;
 				}
 				it_right--;
