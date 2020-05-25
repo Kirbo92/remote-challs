@@ -49,10 +49,16 @@ char *ft_reverse_parenthesis(const char *str)
 					reverse = ft_swap(reverse, it_left, it_right--);
 					break ;
 				}
+				if (reverse[it_right] == '(')
+					return (NULL);
 				it_right--;
 			}
 		}
 		it_left++;
+		//if (it_right < it_left)
+		//	break ;
 	}
+	if (reverse[it_left] == ')')
+			return (NULL);
 	return (reverse);
 }
