@@ -34,31 +34,34 @@ char	*ft_swap(char *str, int it_left, int it_right)
 char *ft_reverse_parenthesis(const char *str)
 {
 	char *reverse = strdup(str);
-	char *substr = NULL;
-	int len = strlen(str);
-	int it_left = 0;
-	int it_right = len - 1;
+	int it_left;
+	int it_right;
+	int i = 0;
+	int level = 0;
 	
-	while (it_left[reverse] && it_left != it_right)
+
+	while (i[reverse])
 	{	
-		if (it_left[reverse] == '(')
-		{
-			while (it_right[reverse] && it_right != it_left)
-			{
-				if (it_right[reverse] == ')'){
-					reverse = ft_swap(reverse, it_left, it_right--);
-					break ;
-				}
-				it_right--;
-			}
-			//if (it_right[reverse] == '(')
-			//	return (NULL);
+		if (i[reverse] == '(')
+		{	
+			if (level == 0)
+				it_left = i;
+			level++;
 		}
-		it_left++;
-		//if (it_right < it_left)
-		//	break ;
+		else if (i[reverse] == ')' && level > 0)
+		{
+			if (level == 1)
+			{
+				reverse = ft_swap(reverse, it_left, i);
+				i = it_left;
+				level = 0;
+			}
+			else
+				level--;
+		}
+		i++;
 	}
-	if (it_left[reverse] == ')')
-			return (NULL);
+	if (level != 0)
+		return (NULL);
 	return (reverse);
 }
