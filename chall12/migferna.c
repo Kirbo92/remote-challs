@@ -10,24 +10,28 @@ char	*ft_swap(char *str, int it_left, int it_right)
 
 	i = it_left;
 	length = it_right;
-	while (length > i)
+	while (i < length)
 	{
-		if (i[str] == '(')
-			tmp = ')';
-		else if (i[str] == ')')
-			tmp = '(';
-		else
-			tmp = i[str];
-		if (length[str] == '(')
-			i[str] = ')';
-		else if (str[length] == ')')
-			i[str] = '(';
-		else
-			i[str] = length[str];
+		tmp = i[str];
+		i[str] = length[str];
 		length[str] = tmp;
+
+		if (length[str] == '(')
+			length[str] = ')';
+		else if (length[str] == ')')
+			length[str] = '(';
+		if (i[str] == '(')
+			i[str] = ')';
+		else if (i[str] == ')')
+			i[str] = '(';
+		
 		length--;
 		i++;
 	}
+	if (i[str] == '(')
+		i[str] = ')';
+	else if (i[str] == ')')
+		i[str] = '(';
 	return (str);
 }
 
